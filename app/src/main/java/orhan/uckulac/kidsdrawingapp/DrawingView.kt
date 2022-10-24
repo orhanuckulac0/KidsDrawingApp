@@ -107,6 +107,12 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
         mDrawPaint!!.strokeWidth = mBrushSize
     }
 
+    // set the color of the brush by parsing the newColor's string
+    fun setColor(newColor: String){
+        color = Color.parseColor(newColor)
+        mDrawPaint!!.color = color
+    }
+
 
     internal inner class CustomPath(var color: Int,
                                     var brushThickness: Float): Path() { // Converts the provided path string to a Path object of the default filesystem.
