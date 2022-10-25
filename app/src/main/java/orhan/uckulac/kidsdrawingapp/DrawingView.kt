@@ -17,7 +17,8 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
     private var mBrushSize: Float = 0.toFloat()
     private var color = Color.BLACK
     private var canvas: Canvas? = null
-    private var mPaths = ArrayList<CustomPath>()
+    private val mPaths = ArrayList<CustomPath>()
+    private val mUndoPaths = ArrayList<CustomPath>()
 
 
     init {
@@ -113,6 +114,14 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
         mDrawPaint!!.color = color
     }
 
+    fun onClickUndo() {
+        if (mPaths.size > 0){
+            mUndoPaths.add(mPaths.removeAt(mPaths.size-1))
+            invalidate() // this will redraw the screen,
+        // invalidate() means 'redraw on screen' and results to a call of the view's onDraw() method.
+        // So if something changes and it needs to be reflected on screen, you need to call invalidate().
+        }
+    }
 
     internal inner class CustomPath(var color: Int,
                                     var brushThickness: Float): Path() { // Converts the provided path string to a Path object of the default filesystem.

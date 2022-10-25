@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -67,9 +68,7 @@ class MainActivity : AppCompatActivity() {
                         ).show()
                 }
             }
-
         }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,6 +90,12 @@ class MainActivity : AppCompatActivity() {
         uploadImage.setOnClickListener {
             requestStoragePermission()
         }
+
+        val undoBtn: ImageButton = binding.ibUndo
+        undoBtn.setOnClickListener {
+            drawingView?.onClickUndo()
+        }
+
     }
 
 
