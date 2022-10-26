@@ -20,7 +20,6 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
     private val mPaths = ArrayList<CustomPath>()
     private val mUndoPaths = ArrayList<CustomPath>()
 
-
     init {
         setUpDrawing()
     }
