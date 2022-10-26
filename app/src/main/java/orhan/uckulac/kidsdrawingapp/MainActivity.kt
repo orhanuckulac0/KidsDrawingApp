@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.media.MediaScannerConnection
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -245,6 +246,7 @@ class MainActivity : AppCompatActivity() {
                                 "File Saved Successfully: $result",
                                 Toast.LENGTH_LONG
                             ).show()
+                            shareImage(result)  // open the share intent for user
                         }else{
                             Toast.makeText(this@MainActivity,
                                 "Something went wrong while saving the file.",
@@ -276,4 +278,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun shareImage(ImageDirectory: String){
+        MediaScannerConnection.scanFile(this@MainActivity, arrayOf(ImageDirectory), null){
+            path, uri ->
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND // set action to the intent, allows us to send items
+            // EXTRA_STEAM = A content: URI holding a stream of data associated with the Intent, used with ACTION_SEND to supply the data being sent.
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)  // basically sharing where the image on our device with the Intent
+            shareIntent.type = "image/png" // mimeType
+            startActivity(Intent.createChooser(shareIntent, "Share"))  // displays and activity chooser
+        }
+    }
 }
