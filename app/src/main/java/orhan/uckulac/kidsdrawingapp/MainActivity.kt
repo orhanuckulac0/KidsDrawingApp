@@ -30,7 +30,6 @@ import orhan.uckulac.kidsdrawingapp.databinding.ActivityMainBinding
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.PrintStream
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -115,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch { // create a coroutine
                     showDialogProgress()  // show the progress dialog
                     val flDrawingViewContainer: FrameLayout = binding.flDrawingViewContainer  // get both canvas and background(drawings and uploaded image if there is any)
-                    val mBitmap: Bitmap = getBitmapView(flDrawingViewContainer)  // create a bitmap and get bitmapview
+                    val mBitmap: Bitmap = getBitmapView(flDrawingViewContainer)  // create a bitmap and get bitmap view
                     saveBitmapFile(mBitmap)  // save bitmap file to phone
                 }
             }
