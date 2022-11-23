@@ -1,5 +1,5 @@
 
-# Project Title
+# KidsDrawingApp
 
 a drawing app for kids.
 ## Features
